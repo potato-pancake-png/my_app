@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'fridge_main_page.dart';
+import 'fridge_main_view.dart';
+import 'login_view.dart'; // 로그인 페이지 import
 
 class AccountSelectPage extends StatelessWidget {
   const AccountSelectPage({super.key});
@@ -76,7 +77,13 @@ class AccountSelectPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // 가족 냉장고 로그인 로직
+                    // 가족 냉장고 로그인 로직: 로그인 페이지로 이동
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
                   },
                   child: const Text(
                     '로그인',

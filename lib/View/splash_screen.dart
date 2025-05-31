@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'account_select_page.dart'; // 변경: AccountSelectPage import
+import 'account_select_view.dart'; // 변경: AccountSelectPage import
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

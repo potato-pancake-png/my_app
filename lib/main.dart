@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
-import '/pages/splash_screen.dart'; // 추가
+import 'package:flutter_localizations/flutter_localizations.dart'; // 추가
+import 'package:my_app/ViewModel/auth_viewmodel.dart';
+import 'package:my_app/ViewModel/refrigerator_viewmodel.dart';
+import 'package:provider/provider.dart';
+import 'View/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => RefrigeratorViewModel()), // 추가
+        // 다른 Provider들...
+      ],
+      child: const MyApp(), // MyApp 또는 최상위 위젯
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,8 +28,21 @@ class MyApp extends StatelessWidget {
       title: '내 Flutter App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Pretendard', // 기본 폰트 설정
       ),
+      debugShowCheckedModeBanner: false, // 디버그 배너 제거
       home: const SplashScreen(),
+      localizationsDelegates: const [
+        // 추가
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        // 추가
+        Locale('ko'), // 한국어
+        Locale('en'), // 영어 (기본)
+      ],
     );
   }
 }
